@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENTORO | Login</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="../index.html" id="navbar__logo">MENTORO</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="../index.html" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="../pages/classes.html" class="navbar__links">Classes</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="../pages/teach.html" class="navbar__links">Teach</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="../pages/registration.html" class="button">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sign-up Form -->
+    <div class="signup-form">
+        <h2>Enter your Account</h2>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-container">
+                    <input type="email" id="email" name="email" required>
+                    <span class="status" id="email-validation"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <div class="input-container">
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <span class="status" id=password-validation></span>
+                </div>
+            </div><br>
+            <a href="../index.html" class="button"  id="signup-button">Sign in</a></button>
+        </form>
+    </div>
+    
+    <script src="../scripts/app.js"></script>
+</body>
+</html>

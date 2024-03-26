@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <!-- Include any necessary CSS files here -->
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Admin Page</h1>
+
+    <h2>User List</h2>
+    <ul id="userList">
+        <!-- User items will be dynamically added here -->
+    </ul>
+
+    <button id="addUserBtn" onclick="toggleForm('addUserForm')">Add User</button>
+    <button id="updateUserBtn" onclick="toggleForm('updateUserForm')">Update User</button>
+    <button id="deleteUserBtn">Delete User</button>
+
+    <form id="addUserForm" class="hidden" onsubmit="handleSubmit(event, 'add')">
+        <input type="text" id="name" placeholder="Name" name="name" required><br>
+        <div class="input-container">
+            <input type="email" id="email" name="email" required>
+            <span class="status" id="email-validation"></span>
+        </div>
+        <input type="password" id="password" placeholder="Password" name="password" required><br>
+        <div class="input-container">
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <span class="status" id=password-validation></span>
+        </div>
+        <select id="countrySelect" name="countrySelect" class="select-dropdown" required>
+            <option value="" selected disabled>Select Country</option>
+        </select>
+        <select id="citySelect" name="citySelect" class="select-dropdown" required>
+            <option value="" selected disabled>Select City</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    <form id="updateUserForm" class="hidden" onsubmit="handleSubmit(event, 'update')">
+        <input type="text" placeholder="Name" name="name" required><br>
+        <input type="email" placeholder="Email" name="email" required><br>
+        <!-- Add more input fields for other details -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="admin.js"></script>
+
+    <script>
+        function toggleForm(formId) {
+            var form = document.getElementById(formId);
+            form.classList.toggle('hidden');
+        }
+
+        function handleSubmit(event, action) {
+            event.preventDefault();
+            // Get form data and perform action based on 'action' parameter
+            // For example, send data to server for processing
+            console.log('Form submitted for action:', action);
+        }
+
+        // Function to fetch users from server and populate the list
+        async function fetchAndPopulateUserList() {
+            try {
+                const response = await fetch('/users');
+                const users = await response.json();
+                const userList = document.getElementById('userList');
+                userList.innerHTML = ''; // Clear previous list items
+                users.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${user.firstname} ${user.lastname}`;
+                    userList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching and populating user list:', error);
+            }
+        }
+
+        // Call the fetchAndPopulateUserList function when the page loads
+        window.addEventListener('load', fetchAndPopulateUserList);
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>Country List JS</title>
+    <script src="//cdn.rawgit.com/i-rocky/country-list-js/00fd1e87/dist/country.min.js"></script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><input type="text" id="query"></td>
+            <td>
+                <select id="search-by">
+                    <option value="1">ISO-ALPHA-2</option>
+                    <option value="2">ISO-ALPHA-3</option>
+                    <option value="3">Name</option>
+                    <option value="4">Capital</option>
+                    <option value="5">Currency</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="find">Search</button></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td id="name"></td>
+        </tr>
+        <tr>
+            <td>Continent</td>
+            <td id="continent"></td>
+        </tr>
+        <tr>
+            <td>Capital</td>
+            <td id="capital"></td>
+        </tr>
+        <tr>
+            <td>ISO-ALPHA-2</td>
+            <td id="iso-alpha-2"></td>
+        </tr>
+        <tr>
+            <td>ISO-ALPHA-3</td>
+            <td id="iso-alpha-3"></td>
+        </tr>
+        <tr>
+            <td>Currency Code</td>
+            <td id="currency_code"></td>
+        </tr>
+        <tr>
+            <td>Currency Symbol</td>
+            <td id="currency_symbol"></td>
+        </tr>
+        <tr>
+            <td>Currency Decimal</td>
+            <td id="currency_decimal"></td>
+        </tr>
+        <tr>
+            <td>Dialing Code</td>
+            <td id="dialing-code"></td>
+        </tr>
+    </table>
+<script>
+    var country = new Country;
+    var queryInput = getEL('query');
+    var searchByOption = getEL('search-by');
+    var findBtn = getEL('find');
+    findBtn.onclick = function () {
+        var query = queryInput.value;
+        if(!query.length) {
+            alert("Type anything relevant to this project to search");
+            return;
+        }
+        var option = searchByOption.value;
+        var info = country.find(query, option);
+        if(!info) {
+            alert("Not found");
+            return;
+        }
+        setEL('name', info.name);
+        setEL('continent', info.continent);
+        setEL('capital', info.capital);
+        setEL('iso-alpha-2', info.code.iso_alpha_2);
+        setEL('iso-alpha-3', info.code.iso_alpha_3);
+        var currency = info.currency;
+        setEL('currency_code', currency.code);
+        setEL('currency_symbol', currency.symbol);
+        setEL('currency_decimal', currency.decimal);
+        setEL('dialing-code', info.dialing_code);
+    };
+
+    function getEL(id) {
+        return document.getElementById(id);
+    }
+    function setEL(id, value) {
+        getEL(id).innerText = value;
+    }
+</script>
+</body>
+</html>
