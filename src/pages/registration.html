@@ -8,6 +8,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     </head>
 <body>
 
@@ -66,13 +69,13 @@
             <div class="form-group">
                 <label for="countrySelect">Country</label>
                 <select id="countrySelect" name="countrySelect" class="select-dropdown" required>
-                    <option value="" selected disabled>Select Country</option>
+                    <option value="" selected hidden>Select Country</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="citySelect">City</label>
                 <select id="citySelect" name="citySelect" class="select-dropdown" required>
-                    <option value="" selected disabled>Select City</option>
+                    <option value="" selected hidden>Select City</option>
                 </select>
             </div>
             <div class="checkbox">
@@ -83,7 +86,11 @@
             <p class="sign-in-text">Already have an account?<a href="../pages/login.html" id="sign-in-option"> Sign in</a></p>
         </form>
     </div>
-    
-    <script src="app.js"></script>
+    <script src="../scripts/dropdown_populate.js"></script>
+    <script src="../scripts/validation.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script>
+        $("#citySelect").select2({})
+    </script>
 </body>
 </html>
